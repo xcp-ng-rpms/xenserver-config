@@ -10,13 +10,6 @@ Release: 2%{?xsrel}%{?dist}
 Summary:        XenServer configuration
 License:        GPL+
 BuildArch:      noarch
-## Break this link and allow xenserver-release-config to pull in
-## the "packages" sub-package so that it is only included in real installs
-## and not buildroots. Leave it here and commented out so that people know
-## why. When the time comes to retire xenserver-release-config, we will need
-## another subpackage here which will have it as a virtual Provides and this
-## Requires: will then move to there and be uncommented.
-# Requires:       %%{name}-packages
 Provides:       system-config = %{version}
 
 BuildRequires:  systemd
@@ -32,18 +25,6 @@ Requires(posttrans): systemd
 
 %description    presets
 XenServer preset file.
-
-%package        packages
-Summary:        Xenserver package importer
-Requires:       xenserver-telemetry >= 1.0.1
-Requires:       xenserver-nagios-plugins >= 1.0.4
-Requires:       nagios-plugins-nrpe >= 4.1.0-4
-Requires:       nagios-plugins-disk >= 2.4.3-2
-Requires:       nagios-plugins-load >= 2.4.3-2
-Requires:       nagios-plugins-swap >= 2.4.3-2
-
-%description    packages
-A means of requiring extra packages into an installation when the install groups cannot be updated.
 
 %package        rpm
 Summary:        Xenserver RPM config
@@ -107,9 +88,6 @@ install -D -m 644 rpmconfig/doc/%{name}/buildflags.md %{buildroot}/%{_pkgdocdir}
 
 # An empty files section is necessary to get RPM to create output
 %files
-
-# An empty files section is necessary to get RPM to create output
-%files packages
 
 %files rpm
 %dir %{my_rpmdir}/fileattrs
