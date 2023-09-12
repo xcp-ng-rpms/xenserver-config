@@ -6,7 +6,7 @@
 
 Name:           xenserver-config
 Version: 1.0.1
-Release: 2%{?xsrel}%{?dist}
+Release: 2.1%{?xsrel}%{?dist}
 Summary:        XenServer configuration
 License:        GPL+
 BuildArch:      noarch
@@ -14,6 +14,8 @@ Provides:       system-config = %{version}
 
 BuildRequires:  systemd
 Source0: xenserver-config-1.0.1.tar.gz
+# XCP-ng: ship our notes on the upstream provenance of the macros
+Source1: provenance-notes.md
 
 %description
 Additional utilities and configuration for XenServer.
@@ -45,6 +47,7 @@ Xenserver RPM Macros.
 
 %prep
 %autosetup
+cp %{SOURCE1} .
 
 %build
 
@@ -90,6 +93,7 @@ install -D -m 644 rpmconfig/doc/%{name}/buildflags.md %{buildroot}/%{_pkgdocdir}
 %files
 
 %files rpm
+%doc provenance-notes.md
 %dir %{my_rpmdir}/fileattrs
 %{my_rpmdir}/lua
 %dir %{my_rpmdir}/macros.d
@@ -110,6 +114,10 @@ install -D -m 644 rpmconfig/doc/%{name}/buildflags.md %{buildroot}/%{_pkgdocdir}
 %{my_rpmdir}/macros.d/macros.xenserver
 
 %changelog
+* Tue Sep 12 2023 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.0.1-2.1
+- Document the provenance of all these macros and what changes
+  when compared with CentOS/Fedora.
+
 * Thu May 18 2023 Deli Zhang <dzhang@tibco.com> - 1.0.1-2
 - CP-42775: Add NRPE packages requires
 
