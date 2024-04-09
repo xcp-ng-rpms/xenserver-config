@@ -1,4 +1,4 @@
-%global package_speccommit 18403f1438ae83b580833ce207ee32b527733978
+%global package_speccommit 075f4fedc8d0f4d5ed4d820746e9856a98428951
 %global package_srccommit v1.0.1
 %define private_config_path /opt/xensource/rpmconfig/
 %define replace_spaces() %(echo -n "%1" | sed 's/ /_/g')
@@ -6,7 +6,7 @@
 
 Name:           xenserver-config
 Version: 1.0.1
-Release: 2%{?xsrel}%{?dist}
+Release: 3%{?xsrel}%{?dist}
 Summary:        XenServer configuration
 License:        GPL+
 BuildArch:      noarch
@@ -41,6 +41,7 @@ Requires:       nagios-plugins-nrpe >= 4.1.0-4
 Requires:       nagios-plugins-disk >= 2.4.3-2
 Requires:       nagios-plugins-load >= 2.4.3-2
 Requires:       nagios-plugins-swap >= 2.4.3-2
+Requires:       xenserver-snmp-agent >= 1.0.8-1
 
 %description    packages
 A means of requiring extra packages into an installation when the install groups cannot be updated.
@@ -132,6 +133,9 @@ install -D -m 644 rpmconfig/doc/%{name}/buildflags.md %{buildroot}/%{_pkgdocdir}
 %{my_rpmdir}/macros.d/macros.xenserver
 
 %changelog
+* Wed Oct 25 2023 Deli Zhang <deli.zhang@cloud.com> - 1.0.1-3
+- CP-44169: Add xenserver-snmp-agent package requires
+
 * Thu May 18 2023 Deli Zhang <dzhang@tibco.com> - 1.0.1-2
 - CP-42775: Add NRPE packages requires
 
