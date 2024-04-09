@@ -55,7 +55,7 @@ that I would place somewhere around mid-2022, or the end of it.
     │       │           Main change: macro %xenserver defined instead of %epel.
     │       └── xenserver
     │           ├── dist.sh: from redhat-rpm-config. Changed: RELEASEFILE=/etc/xenserver-release (instead of /etc/redhat-release)
-    │                   This path doesn't exist on a XenServer host AFAIK.
+    │           │       This path doesn't exist on a XenServer host AFAIK.
     │           ├── find-provides: from redhat-rpm-config. "redhat" becomes "xenserver", which makes it look
     │           │       for /usr/lib/rpm/xenserver/find-provides.ksyms if exists, but I don't think it does.
     │           ├── find-requires: from redhat-rpm-config. "redhat" becomes "xenserver", which makes it look
